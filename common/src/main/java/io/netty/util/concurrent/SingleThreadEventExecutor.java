@@ -633,6 +633,7 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
         boolean inEventLoop = inEventLoop();
         boolean wakeup;
         int oldState;
+        // 自旋
         for (;;) {
             if (isShuttingDown()) {
                 return terminationFuture();
@@ -653,6 +654,7 @@ public abstract class SingleThreadEventExecutor extends AbstractScheduledEventEx
                         wakeup = false;
                 }
             }
+            // 可能有别的线程进行关闭了，直接关闭
             if (STATE_UPDATER.compareAndSet(this, oldState, newState)) {
                 break;
             }

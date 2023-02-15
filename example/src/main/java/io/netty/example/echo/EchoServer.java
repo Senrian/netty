@@ -39,7 +39,7 @@ public final class EchoServer {
     public static void main(String[] args) throws Exception {
         // Configure SSL.
         final SslContext sslCtx = ServerUtil.buildSslContext();
-
+        // test
         // Configure the server.
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
